@@ -27,3 +27,8 @@
   loop:
     - '80'
     - '443'
+
+- name: Enable the Nginx service
+  service:
+    name: nginx
+    enabled: yes

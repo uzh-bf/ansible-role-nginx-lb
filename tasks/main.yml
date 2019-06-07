@@ -1,5 +1,3 @@
-- include_tasks: nginx.yml
-
 - name: Inject the NGINX loadbalancer configuration
   template:
     dest: '/etc/nginx/nginx.conf'
@@ -8,3 +6,5 @@
     owner: root
     group: root
   notify: Restart nginx
+
+- include_tasks: nginx.yml

@@ -10,7 +10,7 @@ events {
 stream {
     upstream servers_http {
         least_conn;
-        {% for node in nodes %}
+        {% for node in groups.nodes %}
         server {{ node }}:80 max_fails=3 fail_timeout=5s;
         {% endfor %}
     }
@@ -21,7 +21,7 @@ stream {
 
     upstream servers_https {
         least_conn;
-        {% for node in nodes %}
+        {% for node in groups.nodes %}
         server {{ node }}:443 max_fails=3 fail_timeout=5s;
         {% endfor %}
     }
