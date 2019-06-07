@@ -1,0 +1,29 @@
+- name: Add the Nginx repository key
+  apt_key:
+    id: ABF5BD827BD9BF62
+    url: 'https://nginx.org/keys/nginx_signing.key'
+    state: present
+
+- name: Add the Nginx stable repository
+  apt_repository:
+    repo: deb https://nginx.org/packages/ubuntu/ {{ansible_distribution_release}} nginx
+    state: present
+
+- name: Update APT package cache
+  apt:
+    update_cache: yes
+    cache_valid_time: 3600
+
+- name: Install Nginx package
+  apt:
+    name: nginx
+    state: latest
+
+- name: Allow all traffic to Nginx ports
+  ufw:
+    rule: allow
+    port: '{{ item }}'
+    proto: 'tcp'
+  loop:
+    - '80'
+    - '443'
