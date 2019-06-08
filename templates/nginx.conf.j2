@@ -10,7 +10,7 @@ stream {
         least_conn;
 
         {% for node in groups.worker %}
-        server {{ node }}:443 max_fails=3 fail_timeout=5s;
+        server {{ node }}:80 max_fails=3 fail_timeout=5s;
         {% endfor %}
     }
     server {
