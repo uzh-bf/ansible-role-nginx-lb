@@ -12,9 +12,6 @@ stream {
         {% for node in groups.worker %}
         server {{ node }}:443 max_fails=3 fail_timeout=5s;
         {% endfor %}
-
-        # only for commercial nginx
-        # server {{ srv_hostname }} service=_http._tcp resolve max_fails=3 fail_timeout=5s;
     }
     server {
         listen     80;
@@ -27,9 +24,6 @@ stream {
         {% for node in groups.worker %}
         server {{ node }}:443 max_fails=3 fail_timeout=5s;
         {% endfor %}
-
-        # only for commercial nginx
-        # server {{ srv_hostname }} service=_http._tcp resolve max_fails=3 fail_timeout=5s;
     }
     server {
         listen     443;
